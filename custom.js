@@ -25,7 +25,7 @@ var asset_url = base_url + 'tijptjik/DS_assets/master/'
 
 // Hide the theme Cell
 
-$('#notebook .cell:first').hide()
+$('.cell:first').hide()
 
 // Load the styles
 
