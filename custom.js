@@ -1,13 +1,19 @@
 /*
-Theme Loader for iPython Notebooks
+Hyrule Theme Loader for iPython Notebooks
 
 Until iPython develops an official way of adding themes to iPython Notebooks,
 this hack will allow you to load custom CSS and JS in any ipython notebook viewer.
 
 Just include the following in the first cell
 
-%%javascript
-$.getScript("http://localhost:8000/custom.js")
+	%%javascript
+	$.getScript("https://raw.githubusercontent.com/ODHK/hyrule_theme/master/custom.js")
+
+
+Or for Development purposes
+	
+	%%javascript
+	$.getScript("http://localhost:8000/theme/custom.js")
 
 */
 // Hide the theme Cell
