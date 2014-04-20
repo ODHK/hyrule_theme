@@ -15,6 +15,18 @@ Or for Development purposes
     %%javascript
     $.getScript("http://localhost:8000/theme/custom.js")
 
+
+Or dynamically load the appropriate scripts
+
+    %%javascript
+    function is_local(){
+        return (document.location.hostname == "localhost" || document.location.hostname == '127.0.0.1')
+    }
+    var url = is_local() ? "http://localhost:8000/theme/custom.js" : "http://odhk.github.io/hyrule_theme/custom.js"
+    $.getScript(url)
+
+Enjoy!
+
 */
 
 // Theme and Asset URLs, change these to your fork.
