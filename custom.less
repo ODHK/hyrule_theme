@@ -1,0 +1,228 @@
+/* 
+
+Hyrule Theme for iPython Notebooks
+
+CC:BY Mart van de Ven ~ m@type.hk
+
+*/
+
+// Style Guide
+
+// TYPOGRAPHY
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700|PT+Mono|Roboto+Slab:400,700);
+
+@header-font : 'Roboto Slab', serif;
+@text-font : 'Open Sans', sans-serif;
+@monospace : 'PT Mono', monospace;
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: @text-font;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: @vertical-rhythm;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @header-font;
+  margin-bottom: @vertical-rhythm;
+}
+
+h1 {
+  font-size: 26px;
+  font-size: 2.6rem;
+  line-height: 2 * @vertical-rhythm;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-size: 2.2rem;
+  line-height: 2 * @vertical-rhythm;
+}
+
+h3 {
+  font-size: 18px;
+  font-size: 1.8rem;
+  line-height: @vertical-rhythm;
+}
+
+h4 {
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: @vertical-rhythm;
+}
+
+div#notebook, p {
+  font-size: 18px;
+  font-size: 1.8rem;
+  margin-bottom: @vertical-rhythm;
+  line-height: @vertical-rhythm;
+}
+
+// COLOUR
+
+@black : rgb(0,0,0);
+@grey  : #E9E9E9;
+
+// CONSTANTS
+
+@borderradius : 0.5rem;
+@vertical-rhythm: 2.4rem;
+
+// RESET
+
+*, *:before, *:after {
+  // margin: 0;
+  // padding: 0;
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+// STYLES
+
+
+img[alt="break"] {
+  width: 8rem;
+  margin: 0 auto;
+}
+
+img[alt="prefix"] {
+  width: 4rem;
+  margin-right: 2rem;
+  float: left;
+}
+
+img.lead {
+  margin-bottom: @vertical-rhythm;
+}
+
+blockquote + footer {
+  float: right;
+  margin-right: 8rem;
+}
+
+// NOTEBOOK STYLES
+
+#notebook-container {
+  max-width: 100rem;
+}
+
+div.text_cell_render {
+  max-width: 100rem;
+}
+// RESOURCE STYLES
+
+p.resource-container{
+  border-radius: @borderradius;
+  position: relative;
+  overflow: hidden;
+  a {
+    height: 18rem;
+    text-decoration: none;
+    padding-top: 8rem;
+    display: block;
+    color: white;
+    &:visited, &:link{
+      text-decoration: none;
+    }
+    p {
+      font-family: @header-font;
+      font-size: 4rem;
+      color: black;
+      margin:  0;
+      text-align: center;
+      font-weight: 700;
+      color: white;
+      text-shadow: 1px 1px 7px #333;
+    }
+    div {
+      height: 18rem;
+      width: 100rem;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      -webkit-filter: brightness(1.2) blur(2px) grayscale(1);
+      -webkit-filter: brightness(1.2) blur(2px);
+      -webkit-transition: all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition:         all 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
+    &:hover div{
+      -webkit-filter: initial;
+      filter: initial;
+      -webkit-transition: all 260ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition:         all 260ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+}
+
+// CODE BLOCKS
+
+.CodeMirror {
+  font-family: @monospace;
+}
+
+/* Based on Sublime Text's Monokai theme */
+
+@code : #f8f8f2;
+@code-bg : #272822;
+@code-number : #ae81ff;
+@code-variable : #a6e22e;
+@code-variable2 : #9effff;
+@code-string : #e6db74;
+@code-keyword : #f92672;
+@code-cursor : #f8f8f0;
+@code-gutter-text : #d0d0d0;
+@code-comment : #75715e;
+@code-def : #fd971f;
+@code-bracket : #f8f8f2;
+@code-selected : #49483E;
+
+.CodeMirror-lines {background: @code-bg; color: @code;}
+.CodeMirror-lines div.CodeMirror-selected {background: @code-selected !important;}
+.CodeMirror-lines .CodeMirror-gutter {background: @code-bg; border-right: 0px;}
+.CodeMirror-lines .CodeMirror-gutter-text {color: @code-gutter-text;}
+.CodeMirror-lines .CodeMirror-cursor {border-left: 1px solid @code-cursor !important;}
+
+.CodeMirror-lines span.cm-comment {color: @code-comment;}
+.CodeMirror-lines span.cm-atom {color: @code-number;}
+.CodeMirror-lines span.cm-number {color: @code-number;}
+
+.CodeMirror-lines span.cm-property,.cm-s-monokai span.cm-attribute {color: @code-variable;}
+.CodeMirror-lines span.cm-keyword {color: @code-keyword;}
+.CodeMirror-lines span.cm-string {color: @code-string;}
+
+.CodeMirror-lines span.cm-variable {color: @code-variable;}
+.CodeMirror-lines span.cm-variable-2 {color: @code-variable2;}
+.CodeMirror-lines span.cm-def {color: @code-def;}
+.CodeMirror-lines span.cm-error {background: @code-keyword; color: @code-cursor;}
+.CodeMirror-lines span.cm-bracket {color: @code-bracket;}
+.CodeMirror-lines span.cm-tag {color: @code-keyword;}
+.CodeMirror-matchingbracket-lines span.cm-link {color: @code-number;}
+
+.cm-s-monokai .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: white !important;
+}
+
+.CodeMirror-lines {
+  border-radius: @borderradius;
+  padding: 2.2rem;
+}
+
+div.input_area {
+  border: 0;
+  // box-shadow: inset 0 0 0.3rem @black;
+}
+
+div.cell.selected {
+  border-radius: @borderradius;
+  border: thin solid @grey;
+}
