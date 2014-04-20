@@ -1,4 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700|PT+Mono|Roboto+Slab:400,700);
+/* 
+
+Hyrule Theme for iPython Notebooks
+
+CC:BY Mart van de Ven ~ m@type.hk
+
+*/
 html {
   font-size: 62.5%;
 }
@@ -57,6 +64,15 @@ img[alt="break"] {
   width: 8rem;
   margin: 0 auto;
 }
+img[alt="credits"] {
+  width: 10rem;
+  margin: 4rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+img[alt="credits"] + strong {
+  margin-left: 3rem;
+}
 img[alt="prefix"] {
   width: 4rem;
   margin-right: 2rem;
@@ -68,6 +84,9 @@ img.lead {
 blockquote + footer {
   float: right;
   margin-right: 8rem;
+}
+.rendered_html pre {
+  margin: 0;
 }
 #notebook-container {
   max-width: 100rem;

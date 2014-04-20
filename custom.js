@@ -7,7 +7,7 @@ this hack will allow you to load custom CSS and JS in any ipython notebook viewe
 Just include the following in the first cell
 
     %%javascript
-    $.getScript("https://raw.githubusercontent.com/ODHK/hyrule_theme/master/custom.js")
+    $.getScript("http://odhk.github.io/hyrule_theme/custom.js")
 
 
 Or for Development purposes
