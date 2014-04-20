@@ -20,7 +20,7 @@ Or for Development purposes
 // Theme and Asset URLs, change these to your fork.
 
 var base_url  = 'https://raw.githubusercontent.com/'
-var theme_url = base_url + 'ODHK/hyrule_theme/master/'
+var theme_url = 'http://odhk.github.io/hyrule_theme/'
 var asset_url = base_url + 'tijptjik/DS_assets/master/'
 
 // Hide the theme Cell
