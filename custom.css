@@ -53,6 +53,9 @@ p {
   margin-bottom: 2.4rem;
   line-height: 2.4rem;
 }
+li {
+  line-height: 3.6rem;
+}
 *,
 *:before,
 *:after {
