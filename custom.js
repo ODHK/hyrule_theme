@@ -7,7 +7,7 @@ this hack will allow you to load custom CSS and JS in any ipython notebook viewe
 Just include the following in the first cell
 
     %%javascript
-    $.getScript("https://raw.githubusercontent.com/ODHK/hyrule_theme/master/custom.js")
+    $.getScript("http://odhk.github.io/hyrule_theme/custom.js")
 
 
 Or for Development purposes
@@ -15,12 +15,25 @@ Or for Development purposes
     %%javascript
     $.getScript("http://localhost:8000/theme/custom.js")
 
+
+Or dynamically load the appropriate scripts
+
+    %%javascript
+    function is_local(){
+        return (document.location.hostname == "localhost" || document.location.hostname == '127.0.0.1')
+    }
+    var url = is_local() ? "http://localhost:8000/theme/custom.js" : "http://odhk.github.io/hyrule_theme/custom.js"
+    $.getScript(url)
+
+
+Enjoy!
+
 */
 
 // Theme and Asset URLs, change these to your fork.
 
 var base_url  = 'https://raw.githubusercontent.com/'
-var theme_url = base_url + 'ODHK/hyrule_theme/master/'
+var theme_url = 'http://odhk.github.io/hyrule_theme/'
 var asset_url = base_url + 'tijptjik/DS_assets/master/'
 
 // Hide the theme Cell
