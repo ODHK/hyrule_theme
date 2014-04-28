@@ -11,9 +11,18 @@ Just include the following in the first cell
 
 
 Or for Development purposes
-    
+
     %%javascript
     $.getScript("http://localhost:8000/theme/custom.js")
+
+Or Combined
+
+    %%javascript
+    function is_local(){
+      return (document.location.hostname == "localhost" || document.location.hostname == '127.0.0.1')
+    }
+    var url = is_local() ? "http://localhost:8000/theme/custom.js" : "http://odhk.github.io/hyrule_theme/custom.js"
+    $.getScript(url)
 
 */
 
@@ -31,7 +40,7 @@ $('.cell:first').hide()
 
 if (is_local()){
     theme_url = 'http://localhost:8000/theme/'
-}  
+}
 
 $('<link>')
   .appendTo($('head'))
@@ -81,7 +90,7 @@ $('.rendered_html').on('show', function() {
             .addClass('resource-container')
             .append('<a>')
             .find('a')
-            .attr('href', resource_links[i])            
+            .attr('href', resource_links[i])
             .append('<div>')
             .find('div')
             .css('background-image','url(' + resource_img[i]+')')
