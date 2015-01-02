@@ -1,36 +1,41 @@
 /*
+
 Hyrule Theme Loader for iPython Notebooks
 
 Until iPython develops an official way of adding themes to iPython Notebooks,
 this hack will allow you to load custom CSS and JS in any ipython notebook viewer.
 
-Just include the following in the first cell
+Just include and execute the following in the first cell of your notebook
 
     %%javascript
-    $.getScript("https://raw.githubusercontent.com/ODHK/hyrule_theme/master/custom.js")
 
+    window.load_remote_theme = true
+    var theme_js = "https://odhk.github.io/hyrule_theme/custom.js";
 
-Or for Development purposes
-
-    %%javascript
-    $.getScript("http://localhost:8000/theme/custom.js")
-
-Or Combined
-
-    %%javascript
-    function is_local(){
-      return (document.location.hostname == "localhost" || document.location.hostname == '127.0.0.1')
+    window.load_local_theme = function(){
+        var hostname = document.location.hostname
+        return ((hostname == "localhost" || hostname == '127.0.0.1') && !load_remote_theme)
     }
-    var url = is_local() ? "http://localhost:8000/theme/custom.js" : "http://odhk.github.io/hyrule_theme/custom.js"
+
+    var url = load_local_theme() ? document.location.origin + "/files/theme/custom.js" : theme_js
+
     $.getScript(url)
+
+The snippet has two options:
+
+    * 'local_theme' : when true, will load a local theme if the ipython notebook
+    is served on localhost. By default, the local theme files should be placed in
+    a sub-directory alongside the .ipynb file called 'theme'.
+    * 'theme_url' : the url for the javascript file to load. The javascript file
+    should contain logic for injecting styles and functionality. Reference the
+    provided `custom.js` for an example.
 
 */
 
-// Theme and Asset URLs, change these to your fork.
+// Theme and Asset base URLs, change these to your fork.
 
-var base_url  = 'https://raw.githubusercontent.com/'
-var theme_url = 'http://odhk.github.io/hyrule_theme/'
-var asset_url = base_url + 'tijptjik/DS_assets/master/'
+var theme_url   = 'http://odhk.github.io/hyrule_theme/'
+var asset_url   = 'https://drostehk.github.io/notebook-assets/'
 
 // Hide the theme Cell
 
@@ -38,8 +43,8 @@ $('.cell:first').hide()
 
 // Load the styles
 
-if (is_local()){
-    theme_url = 'http://localhost:8000/theme/'
+if (load_local_theme()){
+    theme_url = document.location.origin + '/theme/'
 }
 
 $('<link>')
@@ -55,15 +60,15 @@ $('<img>')
 
 // Load the assets
 
-if (is_local()){
-    asset_url = 'http://localhost:8000/assets/'
+if (load_local_theme()){
+    asset_url = document.location.origin + '/assets/'
 }
 
 $('img[src^="assets/"]').each(
     function(){
         var $this = $(this);
-        var src = $this.attr('src').split('/')[1];
-        $this.attr('src', asset_url + src)
+        var img = $this.attr('src').split('/')[1];
+        $this.attr('src', asset_url + img)
     }
 )
 
@@ -77,7 +82,7 @@ $.each(['show', 'hide'], function (i, ev) {
     };
 });
 
-// Render Resources
+// Render Resource Blocks - see for example http://prologue.datascience.hk
 
 $('.rendered_html').on('show', function() {
     var resource_img = $('[alt="resource"]').map(function(i,e){return $(e).attr('src')})
@@ -102,9 +107,3 @@ $('.rendered_html').on('show', function() {
 })
 
 $('.rendered_html').trigger('show')
-
-// Helper Functions
-
-function is_local(){
-    return (document.location.hostname == "localhost" || document.location.hostname == '127.0.0.1')
-}
